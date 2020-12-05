@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TradController!{% endblock %}
+
+{% block body %}
+    <section class="Articles">
+         {% for article in articles %}
+                    
+          <article>
+              <h2>{{article.title}}</h2>
+              <div class="metadata">ecrit le {{article.createdAt | date('d/m/Y')}} à
+               {{ article.createdAt | date('H:i') }} dans la catégorie {{article.category.title}}</div>
+              <div class="content">
+                  <img src="{{ article.image }}" alt="">
+                  {{ article.content | raw}}
+                  <a href="{{ path('trad_show', {'id':article.id}) }}" class="btn btn-primary">
+                  Lire la Suite</a>
+              </div>
+          </article>
+    {% endfor %}
+    </section>
+{% endblock %}

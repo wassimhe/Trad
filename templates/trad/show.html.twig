@@ -1,0 +1,33 @@
+{% extends "base.html.twig" %}
+{% block body %}
+	<article>
+		<h2>{{ article.title }}</h2>
+		<div class="metadata">ecrit le {{ article.createdAt | date('d/m/Y')}} dans la catégorie 
+	{{ article.category.title}}</div>
+		<div class="content">
+			
+			{{ article.content | raw}}
+		</div>
+		<div class="image">
+		<img src="{{ asset(article.image)}}" alt="{{ article.image}}">
+		</div>
+
+
+	</article>
+	<section id="commentaire">
+	{% for comment in article.comments %}
+		
+	
+		<div class="comment">
+			<div class="row">
+				<div class="col-3">
+					{{ comment.author }} ( <small>  {{ comment.createdAt | date('d/m/Y à H:i')}} </small>)
+				</div>
+				<div class="col">
+				{{ comment.content |raw}}
+				</div>
+			</div>
+	</div>
+	{% endfor %}
+	</section>
+{% endblock %}
